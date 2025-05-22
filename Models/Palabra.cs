@@ -2,32 +2,33 @@ public class Palabra
 { 
     //Atributos
     public string PalabraIngresada { get; private set;}
+    public string NombrePalabra { get; private set;}
     public int Contador { get; private set;}
-    public List<string> ListaLetrasCorrectas { get; private set;}
-    public List<string> ListaLetrasArriesgada { get; private set;}
-     public List<string> ListaPalabrasCorrectas { get; private set;}
+    public List<char> ListaLetrasArriesgada { get; private set;}
+    public List<string> ListaPalabrasCorrectas { get; private set;}
 
     //Constructor
-    public Palabra (string PalabraIngresada, int Contador, List<string> ListaLetrasCorrectas, List<string> ListaLetrasArriesgada, List<string> ListaPalabrasCorrectas)
+    public Palabra (string PalabraIngresada, string NombrePalabra, int Contador, List<char> ListaLetrasArriesgada, List<string> ListaPalabrasCorrectas)
     {
         
         this.PalabraIngresada = PalabraIngresada;
+        this.NombrePalabra = NombrePalabra;
         this.Contador = Contador;
-        this.ListaLetrasCorrectas = new List<string> ();
-        this.ListaLetrasArriesgada = new List<string> ();
+        this.ListaLetrasArriesgada = new List<char> ();
         this.ListaPalabrasCorrectas = new List<string> ();
     }
 
     //Metodos
-    public string InicializarPalabra()
+    public void InicializarPalabra()
     {
-        ///TODO VA EN EL MODEL Y FALTA LA PARTE DE VERIFICAR
+        //TODO VA EN EL MODEL Y FALTA LA PARTE DE VERIFICAR
         string [] ListaPalabrasCorrectas = {"Escribo", "Estrella", "Brillante", "Onda", "Playa", "Color", "Rojo", "Feliz", "Sueño"};
         Random rnd = new Random ();
         int aleatorio = rnd.Next(ListaPalabrasCorrectas.Length);
         string palabraElegida = ListaPalabrasCorrectas[aleatorio];
-        return palabraElegida;
+        NombrePalabra = palabraElegida;
     
+        
     }
  
    public void VerificarPalabra(string palabraElegida)
@@ -44,14 +45,40 @@ public class Palabra
     }
 
 
-    public void VerificarLetra(string palabraElegida)
+    public void VerificarLetra()
     {
-        foreach (int x in ListaLetrasCorrectas)
+        string letraEncontrada = null;
+//Hay que concatenar, con un string, +=
+        char []AdivinaPalabra = new char[NombrePalabra.Length];
+       /* for(int x = 0; x < AdivinaPalabra.Length; x++)
         {
-            if(ListaLetrasArriesgada[0] == palabraElegida[0].ToString()){
+            AdivinaPalabra[x] = '_';
+        }*/
+//Recorremos la palabra
+//Nos vamos fijando posicion por posicion, de la palabra , si la letra conincide con la letra ingresada
+//Recorre la lista de letras arriesgadas, comparamos 
+//Si la letra esta mostramos la letra, sino mostramos el _
+
+        foreach (char i in NombrePalabra)
+        {
+            if (ListaLetrasArriesgada.Contains(NombrePalabra[i]))
+            {
 
             }
         }
+        foreach (char i in ListaLetrasArriesgada)
+        {
+            if()
+            {
+
+            }
+                
+            else
+            {
+                letraEncontrada = "_";
+            }
+        }
+
         
     }
 
