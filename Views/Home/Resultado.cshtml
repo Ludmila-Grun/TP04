@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Resultado";
+}
+@if(ViewBag.Final)
+{
+    <h1>SOS UN/A CAPO/A, GANASTE!!</h1>
+}else
+{
+    <h1>JA SOS UN/A BURRO/A, PERDISTE!!</h1>
+}
+<ul>
+@foreach(char letra in ViewBag.PalabraSeVe)
+{
+    <li>@(letra + " ")</li>
+}
+</ul>
+<h2>Las letras que utilizaste son: </h2>
+<ul>
+    @foreach(char letra in ViewBag.PalabraSeVe)
+{
+    <li>@(letra + " ")</li>
+}
+
+
+</ul>
+<h3>Los intentos que hiciste son: @ViewBag.Contador</h3>

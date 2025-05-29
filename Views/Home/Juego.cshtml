@@ -1,0 +1,24 @@
+
+@{
+    ViewData["Title"] = "Juego";
+}
+<ul>
+@foreach(char letra in ViewBag.PalabraSeVe)
+{
+    <li>@(letra + " ")</li>
+}
+</ul>
+<h2>Las letras que utilizaste son:</h2>
+<h3>Los intentos que tuviste son: @ViewBag.Contador</h3>
+<p>Ingresa la letra que queres arriesgar</p>
+<form action='@Url.Action("ProbarLetra", "Home")' method='POST'>
+<input type="text" name="letra" placeholder="Ingresa Letra"/>
+<input type="submit" name="Arriesgar"/>
+</form>
+<p>Ingresa la palabra que queres arriesgar</p>
+<form action='@Url.Action("ProbarPalabra", "Home")' method='POST'>
+<input type="text" name="palabra" placeholder="Ingresa contraseña"/>
+<input type="submit" name="Arriesgar"/>
+</form>
+
+

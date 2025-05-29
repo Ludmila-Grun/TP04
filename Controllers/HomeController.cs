@@ -13,19 +13,54 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+   public IActionResult Index()
     {
-        Palabra.InicializarPalabra();
-
-        ViewBag.
-
         return View();
     }
 
-    public IActionResult EmpezarAJugar()
-    {
 
-        return View();
+    public IActionResult ComenzarJuego()
+    {
+        JuegoAhorcado.ComenzarJuego();
+        ViewBag.PalabraSeVe = JuegoAhorcado.AdivinarPalabra();
+        ViewBag.LetrasIntentadas = JuegoAhorcado.ListaLetrasIntentadas;
+        ViewBag.Contador = JuegoAhorcado.Contador;
+        ViewBag.PalabraAdivinar = JuegoAhorcado.PalabraAdivinar;
+        return View("Juego");
     }
+
+
+ 
+
+
+  public IActionResult ProbarLetra(char letra)
+    {
+        ViewBag.PalabraSeVe = JuegoAhorcado.ProbarLetra(letra);
+        ViewBag.LetrasIntentadas = JuegoAhorcado.ListaLetrasIntentadas;
+        ViewBag.Contador = JuegoAhorcado.Contador;
+        ViewBag.palabraAdivinar = JuegoAhorcado.PalabraAdivinar;
+
+
+        if (!ViewBag.PalabraSeVe.Contains("_"))
+        {
+            ViewBag.Final = true;
+            return View("Resultado");
+        }
+
+
+        return View("Juego");
+    }
+
+    
+    public IActionResult ProbarPalabra(string palabra)
+    {
+        ViewBag.Final = JuegoAhorcado.ProbarPalabra(palabra);
+        ViewBag.PalabraSeVe = JuegoAhorcado.AdivinarPalabra();
+        ViewBag.LetrasIntentadas = JuegoAhorcado.ListaLetrasIntentadas;
+        ViewBag.Contador = JuegoAhorcado.Contador;
+        ViewBag.PalabraAdivinar = JuegoAhorcado.PalabraAdivinar;
+        return View("MostrarResultados");
+    }
+
 
 }
